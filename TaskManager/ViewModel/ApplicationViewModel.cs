@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Windows.Data;
 using System.Xml.Linq;
 using TaskManager.Commands;
 using TaskManager.Model;
@@ -18,11 +20,9 @@ namespace TaskManager.ViewModel
         RelayCommand editCommand;
         RelayCommand deleteCommand;
         RelayCommand logCommand;
-        IEnumerable<Note> notes;
-
-        private Note selectedNote;
-
-        public IEnumerable<Note> Notes
+      
+        private ObservableCollection<Note> notes;
+        public ObservableCollection<Note> Notes
         {
             get { return notes; }
             set
@@ -31,6 +31,8 @@ namespace TaskManager.ViewModel
                 OnPropertyChanged("Notes");
             }
         }
+
+        private Note selectedNote;
         public Note SelectedNote
         {
             get { return selectedNote; }
@@ -55,9 +57,51 @@ namespace TaskManager.ViewModel
             db = new TaskManagerContext();
             db.Notes.Load();
             db.MetaDatas.Load();
-            Notes = db.Notes.Local.ToBindingList();
+            Notes = db.Notes.Local.ToObservableCollection();
+
+            CvsStaff = new CollectionViewSource();
+            CvsStaff.Source = Notes;
+            CvsStaff.Filter += ApplyFilter;
         }
 
+        #region Filter
+        private string filter;
+        public string Filter
+        {
+            get { return this.filter; }
+            set
+            {
+                this.filter = value;
+                OnFilterChanged();
+            }
+        }
+        private void OnFilterChanged()
+        {
+            CvsStaff.View.Refresh();
+        }
+
+        internal CollectionViewSource CvsStaff { get; set; }
+        public ICollectionView AllStaff
+        {
+            get { return CvsStaff.View; }
+        }
+
+        void ApplyFilter(object sender, FilterEventArgs e)
+        {
+            Note svm = (Note)e.Item;
+
+            if (string.IsNullOrWhiteSpace(this.Filter) || this.Filter.Length == 0)
+            {
+                e.Accepted = true;
+            }
+            else
+            {
+                e.Accepted = svm.Name.Contains(Filter);
+            }
+        }
+        #endregion
+
+        #region Command
         public RelayCommand AddCommand
         {
             get
@@ -137,6 +181,7 @@ namespace TaskManager.ViewModel
                   }));
             }
         }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

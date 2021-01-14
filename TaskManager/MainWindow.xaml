@@ -5,30 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" MinWidth="800" MinHeight="450">
+        Title="Task Manager" Height="450" Width="700" MinWidth="800" MinHeight="450">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MinWidth="300"/>
+            <ColumnDefinition MinWidth="300"/>
             <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="*" MinWidth="400"/>
+            <ColumnDefinition Width="2*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
         <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
 
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
 
             <Canvas Grid.Column="0" Grid.Row="0">
+                <TextBox 
+                    Canvas.Left="69"    
+                    Margin="5"  
+                    Text="{Binding Path=Filter, UpdateSourceTrigger=PropertyChanged}" 
+                    Width="150" />
                 <Button
+                    Canvas.Top="20"
                     Content="ADD" 
                     Margin="10"
                     MinWidth="50"
                     Command="{Binding AddCommand}" 
                     CommandParameter="{Binding Text, ElementName=NoteName}"/>
                 <Button 
+                    Canvas.Top="20"
                     Canvas.Left="75"
                     Content="EDIT" 
                     Margin="10" 
@@ -36,6 +43,7 @@
                     Command="{Binding EditCommand}"
                     CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"/>
                 <Button 
+                    Canvas.Top="20"
                     Canvas.Left="150"
                     Content="DELETE" 
                     Margin="10" 
@@ -43,6 +51,7 @@
                     Command="{Binding DeleteCommand}"
                     CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"  />
                 <Button 
+                    Canvas.Top="20"
                     Canvas.Left="225"
                     Content="LOG" 
                     Margin="10" 
@@ -62,7 +71,7 @@
             </Border>
 
             <ListView Grid.Row="2" Margin="5"  x:Name="ListNote"
-                      ItemsSource="{Binding Notes}"
+                      ItemsSource="{Binding AllStaff}"
                       SelectedItem="{Binding SelectedNote}"
                       ScrollViewer.CanContentScroll="True" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
