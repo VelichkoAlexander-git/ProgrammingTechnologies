@@ -34,7 +34,7 @@
                     Margin="10" 
                     MinWidth="50"
                     Command="{Binding EditCommand}"
-                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"  />
+                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"/>
                 <Button 
                     Canvas.Left="150"
                     Content="DELETE" 

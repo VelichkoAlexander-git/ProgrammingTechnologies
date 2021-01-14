@@ -70,42 +70,15 @@ namespace TaskManager.Model
             }
         }
 
-        protected Note()
+        public Note() 
         { }
-
-        public static Result<Note> Create(string name, DateTime dateOfStart, DateTime? dateOfEnd, string information, Status status)
-        {
-            var errors = new List<string>();
-
-            if (dateOfEnd != null && dateOfEnd < dateOfStart) errors.Add("End date cannot be less than current");
-            if (string.IsNullOrEmpty(name)) errors.Add("Invalid name");
-
-
-            if (errors.Any())
-            {
-                return Result<Note>.Fail(errors);
-            }
-
-            var result = new Note
-            {
-                Name = name,
-                DateOfStart = dateOfStart,
-                DateOfEnd = dateOfEnd,
-                Information = information,
-                Status = status
-            };
-
-            return Result<Note>.Success(result);
-        }
 
         public Result<bool> Update(string name, DateTime dateOfStart, DateTime? dateOfEnd, string information, Status status)
         {
             var errors = new List<string>();
 
-            if (dateOfStart == null) dateOfStart = DateTime.Today;
+            if (dateOfStart == null) dateOfStart = DateTime.Now;
             if (dateOfEnd != null && dateOfEnd < dateOfStart) errors.Add("End date cannot be less than current");
-            if (string.IsNullOrEmpty(name)) errors.Add("Invalid customer name");
-
 
             if (errors.Any())
             {

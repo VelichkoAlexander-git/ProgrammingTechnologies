@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\TaskManager.csproj": {}
+    "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\TaskManager.csproj": {
+    "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\TaskManager.csproj",
+        "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj",
         "packagesPath": "C:\\Users\\Kerman\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\obj\\",
+        "outputPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kerman\\AppData\\Roaming\\NuGet\\NuGet.Config",

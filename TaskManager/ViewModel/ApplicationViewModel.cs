@@ -34,7 +34,16 @@ namespace TaskManager.ViewModel
             get { return selectedNote; }
             set
             {
-                selectedNote = value;
+                if (value != null)
+                selectedNote = new Note()
+                {
+                    Id = value.Id,
+                    Name = value.Name,
+                    Information = value.Information,
+                    DateOfStart = value.DateOfStart,
+                    DateOfEnd = value.DateOfEnd,
+                    Status = value.Status
+                };
                 OnPropertyChanged("SelectedNote");
             }
         }
@@ -55,16 +64,20 @@ namespace TaskManager.ViewModel
                   (addCommand = new RelayCommand((selectedItem) =>
                   {
                       string str = selectedItem as string;
-                      var note = Note.Create(str, DateTime.Today, null, null, Status.Undefined);
-                      if (note.Succeeded)
+                      var note = new Note()
                       {
-                          db.Notes.Add(note.Value);
-                          db.SaveChanges();
-                          int tmp = db.Notes.MaxAsync(t => t.Id).Result;
-                          db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Add Node id = {tmp}").Value);
-                          db.SaveChanges();
-                          selectedNote = note.Value;
-                      }
+                          Name = str,
+                          Information = null,
+                          DateOfStart = DateTime.Now,
+                          DateOfEnd = null,
+                          Status = Status.Undefined
+                      };
+                      db.Notes.Add(note);
+                      db.SaveChanges();
+                      int tmp = db.Notes.MaxAsync(t => t.Id).Result;
+                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Add Node id = {tmp}").Value);
+                      db.SaveChanges();
+                      selectedNote = note;
                   }));
             }
         }
@@ -74,20 +87,23 @@ namespace TaskManager.ViewModel
             get
             {
                 return editCommand ??
-                  (editCommand = new RelayCommand((selectedItem) =>
-                  {
-                      if (selectedItem == null) return;
-                      Note newNote = selectedItem as Note;
+                    (editCommand = new RelayCommand((selectedItem) =>
+                    {
+                        if (selectedItem == null) return;
+                        Note notes = selectedItem as Note;
 
-                      Note note = db.Notes.Find(newNote.Id);
-                      if (note != null)
-                      {
-                          note.Update(newNote.Name, newNote.DateOfStart, newNote.DateOfEnd, newNote.Information, newNote.Status);
-                          db.Entry(note).State = EntityState.Modified;
-                          db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Update Node id = {note.Id}").Value);
-                          db.SaveChanges();
-                      }
-                  }));
+                        var note = db.Notes.Find(notes.Id);
+                        if (note != null)
+                        {
+                            var answer = note.Update(notes.Name, notes.DateOfStart, notes.DateOfEnd, notes.Information, notes.Status);
+                            if (answer.Succeeded)
+                            {
+                                db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Update Node id = {notes.Id}").Value);
+                                db.Entry(note).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
+                    }));
             }
         }
 
@@ -99,9 +115,10 @@ namespace TaskManager.ViewModel
                   (deleteCommand = new RelayCommand((selectedItem) =>
                   {
                       if (selectedItem == null) return;
-                      Note note = selectedItem as Note;
+                      Note fakeNote = selectedItem as Note;
+                      Note note = db.Notes.Find(fakeNote.Id);
                       db.Notes.Remove(note);
-                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {note.Id}").Value);
+                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {fakeNote.Id}").Value);
                       db.SaveChanges();
                   }));
             }

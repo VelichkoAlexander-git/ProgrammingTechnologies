@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fE/lRpNz6u9O0/IvwAB1yNfcCMMAZBErEP/ktj2rGh5hkKB9zV3bgHLxUfzufG9L5Gc+/VaANRagsdW6DSxbxA==",
+  "dgSpecHash": "dRCjBVmWVOzYScvtexO1O1kIaTFjKpjWL4MowVD9PMfLMMyXk8wyQ58dInQ20XZsn+gYq04yFhY+qAHsRhjj8w==",
   "success": true,
-  "projectFilePath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\ProgrammingTechnologies\\TaskManager\\TaskManager\\TaskManager.csproj",
+  "projectFilePath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kerman\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Kerman\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
