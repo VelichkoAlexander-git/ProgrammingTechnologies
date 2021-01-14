@@ -1,0 +1,24 @@
+﻿<Window x:Class="TaskManager.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="LogginWindow" Height="450" Width="500" MinWidth="500" MinHeight="200">
+    <Grid>
+        <ListView Margin="5"  x:Name="ListLogs"
+                      ScrollViewer.CanContentScroll="True" 
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" TextWrapping="Wrap" MinWidth="30"/>
+                        <TextBlock Text="{Binding EventDate}" TextWrapping="Wrap" Width="80"/>
+                        <TextBlock Text="{Binding Information}" TextWrapping="Wrap"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>

@@ -31,12 +31,5 @@ namespace TaskManager
             this.DataContext = new ApplicationViewModel();
             NoteStatus.ItemsSource = Enum.GetValues(typeof(Status)).Cast<Status>();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var db = new TaskManagerContext();
-            var logs = db.MetaDatas.Select(s => $"Date: {s.EventDate}   Event: {s.Information}");
-            MessageBox.Show(String.Join("\n", logs));
-        }
     }
 }

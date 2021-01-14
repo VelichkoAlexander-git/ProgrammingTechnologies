@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
@@ -16,6 +17,7 @@ namespace TaskManager.ViewModel
         RelayCommand addCommand;
         RelayCommand editCommand;
         RelayCommand deleteCommand;
+        RelayCommand logCommand;
         IEnumerable<Note> notes;
 
         private Note selectedNote;
@@ -77,7 +79,6 @@ namespace TaskManager.ViewModel
                       int tmp = db.Notes.MaxAsync(t => t.Id).Result;
                       db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Add Node id = {tmp}").Value);
                       db.SaveChanges();
-                      selectedNote = note;
                   }));
             }
         }
@@ -120,6 +121,19 @@ namespace TaskManager.ViewModel
                       db.Notes.Remove(note);
                       db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {fakeNote.Id}").Value);
                       db.SaveChanges();
+                  }));
+            }
+        }
+
+        public RelayCommand LogCommand
+        {
+            get
+            {
+                return logCommand ??
+                  (logCommand = new RelayCommand((o) =>
+                  {
+                      LogWindow window = new LogWindow(db.MetaDatas.ToList());
+                      window.ShowDialog();
                   }));
             }
         }

@@ -10,7 +10,7 @@ namespace TaskManager
     {
         public TaskManagerContext()
         {
-            //Database.EnsureDeleted();
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

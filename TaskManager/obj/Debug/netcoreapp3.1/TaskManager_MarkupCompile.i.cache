@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 D:\Study\Конспекты\4 курс\1 семестр\Технологии программирования (пр. Радилов П.С.)\TaskManager\TaskManager\App.xaml
-11151548125
+2-13709700
 
-14-741576036
+15746180570
 212-1590057174
-MainWindow.xaml;
+LogWindow.xaml;MainWindow.xaml;
 
-False
+True
 
