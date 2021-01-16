@@ -157,10 +157,9 @@ namespace TaskManager.ViewModel
                   (deleteCommand = new RelayCommand((selectedItem) =>
                   {
                       if (selectedItem == null) return;
-                      Note fakeNote = selectedItem as Note;
-                      Note note = db.Notes.Find(fakeNote.Id);
+                      Note note = selectedItem as Note;
                       db.Notes.Remove(note);
-                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {fakeNote.Id}").Value);
+                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {note.Id}").Value);
                       db.SaveChanges();
                   }));
             }
