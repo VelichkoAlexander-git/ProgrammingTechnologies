@@ -59,8 +59,7 @@ namespace TaskManagerNUnitTests
         {
             var viewModel = new ApplicationViewModel();
 
-            Assert.IsNull(viewModel.SelectedNote);
-            Assert.IsFalse(viewModel.DeleteCommand.CanExecute(viewModel.SelectedNote));
+            Assert.IsFalse(viewModel.DeleteCommand.CanExecute(null));
         }
 
         [Test]
@@ -80,7 +79,7 @@ namespace TaskManagerNUnitTests
             viewModel.Notes.Add(note);
 
             Assert.IsNull(viewModel.SelectedNote);
-            Assert.IsFalse(viewModel.EditCommand.CanExecute(viewModel.SelectedNote));
+            Assert.IsFalse(viewModel.EditCommand.CanExecute(note));
         }
 
         [Test]
