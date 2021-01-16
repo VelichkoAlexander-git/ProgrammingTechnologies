@@ -41,7 +41,7 @@
                     Margin="10" 
                     MinWidth="50"
                     Command="{Binding EditCommand}"
-                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"/>
+                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedValue}"/>
                 <Button 
                     Canvas.Top="20"
                     Canvas.Left="150"
@@ -49,7 +49,7 @@
                     Margin="10" 
                     MinWidth="50"
                     Command="{Binding DeleteCommand}"
-                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedItem}"  />
+                    CommandParameter="{Binding ElementName=ListNote, Path=SelectedValue}"  />
                 <Button 
                     Canvas.Top="20"
                     Canvas.Left="225"
@@ -71,7 +71,7 @@
             </Border>
 
             <ListView Grid.Row="2" Margin="5"  x:Name="ListNote"
-                      ItemsSource="{Binding AllStaff}"
+                      ItemsSource="{Binding AllNote}"
                       SelectedItem="{Binding SelectedNote}"
                       ScrollViewer.CanContentScroll="True" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto">

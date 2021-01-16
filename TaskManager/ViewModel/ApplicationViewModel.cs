@@ -20,7 +20,7 @@ namespace TaskManager.ViewModel
         RelayCommand editCommand;
         RelayCommand deleteCommand;
         RelayCommand logCommand;
-      
+
         private ObservableCollection<Note> notes;
         public ObservableCollection<Note> Notes
         {
@@ -39,15 +39,15 @@ namespace TaskManager.ViewModel
             set
             {
                 if (value != null)
-                selectedNote = new Note()
-                {
-                    Id = value.Id,
-                    Name = value.Name,
-                    Information = value.Information,
-                    DateOfStart = value.DateOfStart,
-                    DateOfEnd = value.DateOfEnd,
-                    Status = value.Status
-                };
+                    selectedNote = new Note()
+                    {
+                        Id = value.Id,
+                        Name = value.Name,
+                        Information = value.Information,
+                        DateOfStart = value.DateOfStart,
+                        DateOfEnd = value.DateOfEnd,
+                        Status = value.Status
+                    };
                 OnPropertyChanged("SelectedNote");
             }
         }
@@ -59,9 +59,9 @@ namespace TaskManager.ViewModel
             db.MetaDatas.Load();
             Notes = db.Notes.Local.ToObservableCollection();
 
-            CvsStaff = new CollectionViewSource();
-            CvsStaff.Source = Notes;
-            CvsStaff.Filter += ApplyFilter;
+            CvsNote = new CollectionViewSource();
+            CvsNote.Source = Notes;
+            CvsNote.Filter += ApplyFilter;
         }
 
         #region Filter
@@ -77,13 +77,13 @@ namespace TaskManager.ViewModel
         }
         private void OnFilterChanged()
         {
-            CvsStaff.View.Refresh();
+            CvsNote.View.Refresh();
         }
 
-        internal CollectionViewSource CvsStaff { get; set; }
-        public ICollectionView AllStaff
+        internal CollectionViewSource CvsNote { get; set; }
+        public ICollectionView AllNote
         {
-            get { return CvsStaff.View; }
+            get { return CvsNote.View; }
         }
 
         void ApplyFilter(object sender, FilterEventArgs e)
@@ -134,19 +134,16 @@ namespace TaskManager.ViewModel
                 return editCommand ??
                     (editCommand = new RelayCommand((selectedItem) =>
                     {
-                        if (selectedItem == null) return;
+                        if (selectedItem == null || SelectedNote == null) return;
                         Note notes = selectedItem as Note;
+                        if (notes.Id != SelectedNote.Id) return;
 
-                        var note = db.Notes.Find(notes.Id);
-                        if (note != null)
+                        var answer = notes.Update(SelectedNote.Name, SelectedNote.DateOfStart, SelectedNote.DateOfEnd, SelectedNote.Information, SelectedNote.Status);
+                        if (answer.Succeeded)
                         {
-                            var answer = note.Update(notes.Name, notes.DateOfStart, notes.DateOfEnd, notes.Information, notes.Status);
-                            if (answer.Succeeded)
-                            {
-                                db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Update Node id = {notes.Id}").Value);
-                                db.Entry(note).State = EntityState.Modified;
-                                db.SaveChanges();
-                            }
+                            db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Update Node id = {notes.Id}").Value);
+                            db.Entry(notes).State = EntityState.Modified;
+                            db.SaveChanges();
                         }
                     }));
             }
