@@ -27,10 +27,10 @@ namespace TaskManagerNUnitTests
         public void AddNoteCmdCanBeExecutedAlways()
         {
             var viewModel = new ApplicationViewModel();
+            
             Assert.IsTrue(viewModel.AddCommand.CanExecute(null));
 
             var name = "TestName";
-
             Assert.IsTrue(viewModel.AddCommand.CanExecute(name));
         }
 
@@ -41,16 +41,13 @@ namespace TaskManagerNUnitTests
 
             var note = new Note
             {
-                Id = 1,
                 Name = "TestName",
                 Information = "TestInformation",
                 DateOfStart = DateTime.Now,
                 DateOfEnd = null,
                 Status = Status.Undefined
             };
-            viewModel.Notes.Add(note);
-            //viewModel.SelectedNote = note;
-
+            viewModel.AddCommand.Execute(note);
             Assert.IsTrue(viewModel.DeleteCommand.CanExecute(note));
         }
 
@@ -58,7 +55,6 @@ namespace TaskManagerNUnitTests
         public void DeleteCmdCannotBeExecutedSelectedItemNull()
         {
             var viewModel = new ApplicationViewModel();
-
             Assert.IsFalse(viewModel.DeleteCommand.CanExecute(null));
         }
 
@@ -69,14 +65,13 @@ namespace TaskManagerNUnitTests
 
             var note = new Note
             {
-                Id = 1,
                 Name = "TestName",
                 Information = "TestInformation",
                 DateOfStart = DateTime.Now,
                 DateOfEnd = null,
                 Status = Status.Undefined
             };
-            viewModel.Notes.Add(note);
+            viewModel.AddCommand.Execute(note);
 
             Assert.IsNull(viewModel.SelectedNote);
             Assert.IsFalse(viewModel.EditCommand.CanExecute(note));
@@ -89,14 +84,13 @@ namespace TaskManagerNUnitTests
 
             var note = new Note
             {
-                Id = 1,
                 Name = "TestName",
                 Information = "TestInformation",
                 DateOfStart = DateTime.Now,
                 DateOfEnd = null,
                 Status = Status.Undefined
             };
-            viewModel.Notes.Add(note);
+            viewModel.AddCommand.Execute(note);
             viewModel.SelectedNote = note;
 
             Assert.IsTrue(viewModel.EditCommand.CanExecute(viewModel.SelectedNote));

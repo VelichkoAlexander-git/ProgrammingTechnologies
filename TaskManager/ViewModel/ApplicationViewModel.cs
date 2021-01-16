@@ -21,8 +21,8 @@ namespace TaskManager.ViewModel
         RelayCommand deleteCommand;
         RelayCommand logCommand;
 
-        private ObservableCollection<Note> notes;
-        public ObservableCollection<Note> Notes
+        private IEnumerable<Note> notes;
+        public IEnumerable<Note> Notes
         {
             get { return notes; }
             set
@@ -145,7 +145,8 @@ namespace TaskManager.ViewModel
                             db.Entry(notes).State = EntityState.Modified;
                             db.SaveChanges();
                         }
-                    }));
+                    },
+                  (selectedItem) => selectedItem != null && SelectedNote != null));
             }
         }
 
@@ -161,7 +162,8 @@ namespace TaskManager.ViewModel
                       db.Notes.Remove(note);
                       db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Delete Node id = {note.Id}").Value);
                       db.SaveChanges();
-                  }));
+                  },
+                  (selectedItem) => selectedItem != null));
             }
         }
 
