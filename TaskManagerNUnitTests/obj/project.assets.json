@@ -5832,11 +5832,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManagerNUnitTests\\TaskManagerNUnitTests.csproj",
+      "projectUniqueName": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.) + Курсовая\\TaskManager\\TaskManagerNUnitTests\\TaskManagerNUnitTests.csproj",
       "projectName": "TaskManagerNUnitTests",
-      "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManagerNUnitTests\\TaskManagerNUnitTests.csproj",
+      "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.) + Курсовая\\TaskManager\\TaskManagerNUnitTests\\TaskManagerNUnitTests.csproj",
       "packagesPath": "C:\\Users\\Kerman\\.nuget\\packages\\",
-      "outputPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManagerNUnitTests\\obj\\",
+      "outputPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.) + Курсовая\\TaskManager\\TaskManagerNUnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kerman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5853,8 +5853,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj": {
-              "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.)\\TaskManager\\TaskManager\\TaskManager.csproj"
+            "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.) + Курсовая\\TaskManager\\TaskManager\\TaskManager.csproj": {
+              "projectPath": "D:\\Study\\Конспекты\\4 курс\\1 семестр\\Технологии программирования (пр. Радилов П.С.) + Курсовая\\TaskManager\\TaskManager\\TaskManager.csproj"
             }
           }
         }

@@ -118,10 +118,9 @@ namespace TaskManager.ViewModel
                           DateOfEnd = null,
                           Status = Status.Undefined
                       };
-                      db.Notes.Add(note);
+                      var current = db.Notes.Add(note);
                       db.SaveChanges();
-                      int tmp = db.Notes.MaxAsync(t => t.Id).Result;
-                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Add Node id = {tmp}").Value);
+                      db.MetaDatas.Add(MetaData.Create(DateTime.Now, $"Add Node id = {current.Entity.Id}").Value);
                       db.SaveChanges();
                   }));
             }
